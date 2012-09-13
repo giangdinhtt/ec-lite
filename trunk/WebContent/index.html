@@ -1,62 +1,65 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Instant Search</title>
 <link type="text/css" rel="stylesheet" href="style/style.css">
 <script type="text/javascript" src="scripts/jquery-1.8.1.js"></script>
 </head>
 <body>
-<form method="get" action="">
-            <input type="text" id="q" name="q" />
-            <input type="submit" value="Search" />
-        </form>
+	<form method="POST" action="json.ec">
+		<input type="text" id="q" name="q" />
+		<input type="submit" value="Search" />
+	</form>
 
-       <div id="results"></div>
-       <script type="text/javascript">
-    var runningRequest = false;
-    var request;
-   //Identify the typing action
-    $('input#q').keyup(function(e){
-        e.preventDefault();
-        var $q = $(this);
+	<div id="results"></div>
+	<script type="text/javascript">
+		var runningRequest = false;
+		var request;
+		//Identify the typing action
+		$('input#q').keyup(
+				function(e) {
+					e.preventDefault();
+					var $q = $(this);
 
-        if($q.val() == ''){
-            $('div#results').html('');
-            return false;
-        }
+					if ($q.val() == '') {
+						$('div#results').html('');
+						return false;
+					}
 
-        //Abort opened requests to speed it up
-        if(runningRequest){
-            request.abort();
-        }
+					//Abort opened requests to speed it up
+					if (runningRequest) {
+						request.abort();
+					}
+					runningRequest = true;
+					request = $.post('json.ec', {
+						q : $q.val()
+					}, function(data, textStatus) {
+						showResults(data, $q.val());
+						runningRequest = false;
+						console.log(textStatus);
+					}, "json");
 
-        runningRequest=true;
-        request = $.getJSON('json.ec',{
-            q:$q.val()
-        },function(data){           
-            showResults(data,$q.val());
-            runningRequest=false;
-        });
+					//Create HTML structure for the results and insert it on the result div
+					function showResults(data, highlight) {
+						var resultHtml = '';
+						$.each(data, function(i, item) {
+							resultHtml += '<div class="result">';
+							resultHtml += '<p>' + item.TenThanh + " " + item.Ho
+									+ " " + item.Ten + '</p>';
+							//resultHtml+='<h2><a href="#">'+item.title+'</a></h2>';
+							//resultHtml+='<p>'+item.post.replace(highlight, '<span class="highlight">'+highlight+'</span>')+'</p>';
+							//resultHtml+='<a href="#" class="readMore">Read more..</a>'
+							resultHtml += '</div>';
+						});
 
-        //Create HTML structure for the results and insert it on the result div
-        function showResults(data, highlight){
-           var resultHtml = '';
-            $.each(data, function(i,item){
-                resultHtml+='<div class="result">';
-                resultHtml+='<h2><a href="#">'+item.title+'</a></h2>';
-                resultHtml+='<p>'+item.post.replace(highlight, '<span class="highlight">'+highlight+'</span>')+'</p>';
-                resultHtml+='<a href="#" class="readMore">Read more..</a>'
-                resultHtml+='</div>';
-            });
+						$('div#results').html(resultHtml);
+					}
 
-            $('div#results').html(resultHtml);
-        }
-
-        $('form').submit(function(e){
-            e.preventDefault();
-        });
-    });
-</script>
+					$('form').submit(function(e) {
+						e.preventDefault();
+					});
+				});
+	</script>
 </body>
 </html>
