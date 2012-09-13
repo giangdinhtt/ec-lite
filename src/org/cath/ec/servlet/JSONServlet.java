@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.cath.ec.dao.DataConnection;
+
 /**
  * Servlet implementation class JSONServlet
  */
@@ -35,10 +37,12 @@ public class JSONServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
-        
+        sendString(response, DataConnection.search(request.getParameter("q")));
+        System.out.println(request.getParameter("q").toString());
     }
 
     protected void sendString(HttpServletResponse response, String data) throws IOException {
+        response.setCharacterEncoding("UTF-8");
         Writer output = response.getWriter();
         output.write(data);
     }
