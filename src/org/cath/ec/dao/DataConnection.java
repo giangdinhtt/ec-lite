@@ -3,6 +3,8 @@ package org.cath.ec.dao;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+import java.util.ResourceBundle;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -19,23 +22,30 @@ public class DataConnection {
     public DataConnection() {
     }
 
-    final static public Connection connect() throws ClassNotFoundException, SQLException {
+    final static public Connection connect() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
+        // Initialize connection configurations
+        ResourceBundle rb=ResourceBundle.getBundle("connection");
+        String driver=rb.getString("db.driver");
+        String url=rb.getString("db.url");
+        String username=rb.getString("db.username");
+        String password=rb.getString("db.password");
 
         Connection conn = null;
-        // try {
         Properties prop = new Properties();
-        prop.put("charSet", "UTF8");
-        Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-        String connectionString = "jdbc:odbc:DRIVER={Microsoft Access Driver (*.mdb)};DBQ=E:\\EclipseWorkspace\\EC-mini\\db2.mdb";
-        conn = DriverManager.getConnection(connectionString, prop);
-        // } catch (Exception ex) {
-        // System.out.println(ex.toString());
-        // }
+        prop.put("user", username);
+        prop.put("password", password);
+        prop.put("charSet", "UTF-8");
+        prop.put("db.characterEncoding", "UTF-8");
+
+        // Get database connection
+        Class.forName(driver).newInstance();
+        conn = DriverManager.getConnection(url, prop);
 
         return conn;
     }
 
     final static public void main(String[] arg) throws SQLException {
+        
         /*Connection con = null;
         try {
             con = DataConnection.Connect();
@@ -48,159 +58,14 @@ public class DataConnection {
         while (set.next()) {
             System.out.println(set.getString("Ten"));
         }*/
-        
-        try{
-            System.out.println('\u1110');
-            BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
-            String s = bufferRead.readLine();
- 
-            System.out.println(rename(s));
+        PrintStream sysout = null;
+        try {
+            sysout = new PrintStream(System.out, true, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
-        catch(IOException e)
-        {
-                e.printStackTrace();
-        }
-        
-    }
-    public static String rename(String file)
-    {
-        file = file.replace('\u1110', 'd');
-        file = file.replace('\340', 'a');
-        file = file.replace('\341', 'a');
-        file = file.replace('\u1EA3', 'a');
-        file = file.replace('\343', 'a');
-        file = file.replace('\u1EA1', 'a');
-        file = file.replace('\u0103', 'a');
-        file = file.replace('\u1EB1', 'a');
-        file = file.replace('\u1EAF', 'a');
-        file = file.replace('\u1EB3', 'a');
-        file = file.replace('\u1EB5', 'a');
-        file = file.replace('\u1EB7', 'a');
-        file = file.replace('\342', 'a');
-        file = file.replace('\u1EA7', 'a');
-        file = file.replace('\u1EA5', 'a');
-        file = file.replace('\u1EA9', 'a');
-        file = file.replace('\u1EAB', 'a');
-        file = file.replace('\u1EAD', 'a');
-        file = file.replace('\300', 'a');
-        file = file.replace('\301', 'a');
-        file = file.replace('\u1EA2', 'a');
-        file = file.replace('\303', 'a');
-        file = file.replace('\u1EA0', 'a');
-        file = file.replace('\u0102', 'a');
-        file = file.replace('\u1EB0', 'a');
-        file = file.replace('\u1EAE', 'a');
-        file = file.replace('\u1EB2', 'a');
-        file = file.replace('\u1EB4', 'a');
-        file = file.replace('\u1EB6', 'a');
-        file = file.replace('\302', 'a');
-        file = file.replace('\u1EA6', 'a');
-        file = file.replace('\u1EA4', 'a');
-        file = file.replace('\u1EA8', 'a');
-        file = file.replace('\u1EAA', 'a');
-        file = file.replace('\u1EAC', 'a');
-        file = file.replace('\u0111', 'd');
-        file = file.replace('\u0110', 'd');
-        file = file.replace('\350', 'e');
-        file = file.replace('\351', 'e');
-        file = file.replace('\u1EBB', 'e');
-        file = file.replace('\u1EBD', 'e');
-        file = file.replace('\u1EB9', 'e');
-        file = file.replace('\352', 'e');
-        file = file.replace('\u1EC1', 'e');
-        file = file.replace('\u1EBF', 'e');
-        file = file.replace('\u1EC3', 'e');
-        file = file.replace('\u1EC5', 'e');
-        file = file.replace('\u1EC7', 'e');
-        file = file.replace('\310', 'e');
-        file = file.replace('\311', 'e');
-        file = file.replace('\u1EBA', 'e');
-        file = file.replace('\u1EBC', 'e');
-        file = file.replace('\u1EB8', 'e');
-        file = file.replace('\312', 'e');
-        file = file.replace('\u1EC0', 'e');
-        file = file.replace('\u1EBE', 'e');
-        file = file.replace('\u1EC2', 'e');
-        file = file.replace('\u1EC4', 'e');
-        file = file.replace('\u1EC6', 'e');
-        file = file.replace('\354', 'i');
-        file = file.replace('\355', 'i');
-        file = file.replace('\u1EC9', 'i');
-        file = file.replace('\u0129', 'i');
-        file = file.replace('\u1ECB', 'i');
-        file = file.replace('\314', 'i');
-        file = file.replace('\315', 'i');
-        file = file.replace('\u1EC8', 'i');
-        file = file.replace('\u0128', 'i');
-        file = file.replace('\u1ECA', 'i');
-        file = file.replace('\362', 'o');
-        file = file.replace('\363', 'o');
-        file = file.replace('\u1ECF', 'o');
-        file = file.replace('\365', 'o');
-        file = file.replace('\u1ECD', 'o');
-        file = file.replace('\364', 'o');
-        file = file.replace('\u1ED3', 'o');
-        file = file.replace('\u1ED1', 'o');
-        file = file.replace('\u1ED5', 'o');
-        file = file.replace('\u1ED7', 'o');
-        file = file.replace('\u1ED9', 'o');
-        file = file.replace('\u01A1', 'o');
-        file = file.replace('\u1EDD', 'o');
-        file = file.replace('\u1EDB', 'o');
-        file = file.replace('\u1EDF', 'o');
-        file = file.replace('\u1EE1', 'o');
-        file = file.replace('\u1EE3', 'o');
-        file = file.replace('\322', 'o');
-        file = file.replace('\323', 'o');
-        file = file.replace('\u1ECE', 'o');
-        file = file.replace('\325', 'o');
-        file = file.replace('\u1ECC', 'o');
-        file = file.replace('\324', 'o');
-        file = file.replace('\u1ED2', 'o');
-        file = file.replace('\u1ED0', 'o');
-        file = file.replace('\u1ED4', 'o');
-        file = file.replace('\u1ED6', 'o');
-        file = file.replace('\u1ED8', 'o');
-        file = file.replace('\u01A0', 'o');
-        file = file.replace('\u1EDC', 'o');
-        file = file.replace('\u1EDA', 'o');
-        file = file.replace('\u1EDE', 'o');
-        file = file.replace('\u1EE0', 'o');
-        file = file.replace('\u1EE2', 'o');
-        file = file.replace('\371', 'u');
-        file = file.replace('\372', 'u');
-        file = file.replace('\u1EE7', 'u');
-        file = file.replace('\u0169', 'u');
-        file = file.replace('\u1EE5', 'u');
-        file = file.replace('\u01B0', 'u');
-        file = file.replace('\u1EEB', 'u');
-        file = file.replace('\u1EE9', 'u');
-        file = file.replace('\u1EED', 'u');
-        file = file.replace('\u1EEF', 'u');
-        file = file.replace('\u1EF1', 'u');
-        file = file.replace('\331', 'u');
-        file = file.replace('\332', 'u');
-        file = file.replace('\u1EE6', 'u');
-        file = file.replace('\u0168', 'u');
-        file = file.replace('\u1EE4', 'u');
-        file = file.replace('\u01AF', 'u');
-        file = file.replace('\u1EEA', 'u');
-        file = file.replace('\u1EE8', 'u');
-        file = file.replace('\u1EEC', 'u');
-        file = file.replace('\u1EEE', 'u');
-        file = file.replace('\u1EF0', 'u');
-        file = file.replace('\u1EF3', 'y');
-        file = file.replace('\375', 'y');
-        file = file.replace('\u1EF7', 'y');
-        file = file.replace('\u1EF9', 'y');
-        file = file.replace('\u1EF5', 'y');
-        file = file.replace('Y', 'y');
-        file = file.replace('\u1EF2', 'y');
-        file = file.replace('\335', 'y');
-        file = file.replace('\u1EF6', 'y');
-        file = file.replace('\u1EF8', 'y');
-        file = file.replace('\u1EF4', 'y');
-        return file;
+        sysout.println(search("giang"));
     }
 
     public static String search(String keyword) {
