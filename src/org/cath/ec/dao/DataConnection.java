@@ -1,7 +1,6 @@
 package org.cath.ec.dao;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Connection;
@@ -12,7 +11,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-import org.cath.ec.util.AccentRemover;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -57,9 +55,6 @@ public class DataConnection {
             String s = bufferRead.readLine();
  
             System.out.println(rename(s));
-            System.out.println(AccentRemover.removeAccent(s));
-            System.out.println(AccentRemover.removeAccent(s));
-            System.out.println(AccentRemover.toUrlFriendly(s));
         }
         catch(IOException e)
         {
