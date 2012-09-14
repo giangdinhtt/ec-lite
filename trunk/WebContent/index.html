@@ -5,25 +5,100 @@
 <title>Instant Search</title>
 <link type="text/css" rel="stylesheet" href="style/style.css">
 <script type="text/javascript" src="scripts/jquery-1.8.1.js"></script>
+<script language="javascript" type="text/javascript">
+	String.prototype.trimAll = function() {
+		return this.replace(/^\s+|(\s+(?!\S))/mg, " ");
+	};
+
+	String.prototype.insert = function(position, str) {
+		return [this.slice(0, position), str, this.slice(position)].join('');
+	};
+
+	function highlight(str, pattern) {
+		var indexes = [];
+		var lowercase = ('' + str).toLowerCase();
+		var lowercasePattern = pattern.toLowerCase();
+		var len = lowercasePattern.length;
+		var idx = lowercase.indexOf(lowercasePattern);
+		while (idx >= 0) {
+			indexes.push(idx);
+			idx = lowercase.indexOf(lowercasePattern, idx + lowercasePattern.length);
+		}
+ 		var result = ('' + str);
+ 	    for (i = indexes.length - 1; i >= 0; i --) {
+ 	    	result = result.insert(indexes[i] + len, '</span>').insert(indexes[i], '<span class="highlight">');
+ 	    }
+ 	    return result;
+	}
+
+	function throwError(strError) {
+		var errorMsg = document.getElementById("error-msg");
+		errorMsg.innerHTML = "<font color=#FF0000>" + strError + "</font>";
+	}
+</script>
 </head>
 <body>
-	<form method="POST" action="json.ec">
-		<input type="text" id="q" name="q" />
+	<form id="search-form" method="POST" action="json.ec">
+		<input type="text" id="q" name="keyword" />
 		<input type="submit" value="Search" />
+		<div id="error-msg"></div>
+		<div id="search-options">
+		  <input type="checkbox" name="removeAccent" id="removeAccent" value="on" checked>
+		  <input type="checkbox" name="fields" id="matchID" value="ID">
+		  <input type="checkbox" name="fields" id="matchTenThanh" value="TenThanh">
+		  <input type="checkbox" name="fields" id="matchHo" value="Ho">
+		  <input type="checkbox" name="fields" id="matchTen" value="Ten">
+		  <input type="checkbox" name="fields" id="matchLopCu" value="LopCu">
+		  <input type="checkbox" name="fields" id="matchLopMoi" value="LopMoi">
+		</div>
 	</form>
 
-	<div id="results"></div>
+    <div id="summary">Displaying <span id="total-records"></span> record </div>
+	<table id="trainee-list" class="trainee-list" border="0" cellpadding="0" cellspacing="1">
+		<thead>
+			<tr>
+			    <th class="header">#</th>
+			    <th class="header">ID</th>
+				<th class="header">First Name</th>
+				<th class="header">Last Name</th>
+				<th class="header">Age</th>
+				<th class="header">Total</th>
+				<th class="header">Difference</th>
+				<th class="header">Date</th>
+			</tr>
+		</thead>
+		<tbody id="results">
+		</tbody>
+	</table>
+
+
+
+<!-- 	<div id="results"></div> -->
 	<script type="text/javascript">
 		var runningRequest = false;
 		var request;
 		//Identify the typing action
 		$('input#q').keyup(
 				function(e) {
+					var keyCode = (e.which) ? e.which : event.keyCode;
+					// Don't allow input special character
+					if (((keyCode >= 48) && (keyCode <= 57))
+							|| ((keyCode >= 65) && (keyCode <= 90))
+							|| ((keyCode >= 97) && (keyCode <= 122))
+							|| keyCode == 32 || keyCode == 46 || keyCode == 8
+							|| keyCode == 9 || keyCode == 95 || keyCode == 45
+							|| keyCode == 13) {
+					} else {
+						throwError("Special characters is not allowed !");
+						e.preventDefault();
+						return;
+					}
 					e.preventDefault();
 					var $q = $(this);
-
+					console.log($('#search-form').serialize());
 					if ($q.val() == '') {
-						$('div#results').html('');
+						$('tbody#results').html('');
+						throwError("Please enter Search String !");
 						return false;
 					}
 
@@ -32,28 +107,35 @@
 						request.abort();
 					}
 					runningRequest = true;
-					request = $.post('json.ec', {
-						q : $q.val()
-					}, function(data, textStatus) {
+					request = $.post('json.ec', $('#search-form').serializeArray(), function(data, textStatus) {
 						showResults(data, $q.val());
 						runningRequest = false;
 						console.log(textStatus);
 					}, "json");
 
 					//Create HTML structure for the results and insert it on the result div
-					function showResults(data, highlight) {
+					function showResults(data, pattern) {
+						console.log("Show result " + data.length);
+						$('span#total-records').html(data.length);
 						var resultHtml = '';
 						$.each(data, function(i, item) {
-							resultHtml += '<div class="result">';
-							resultHtml += '<p>' + item.TenThanh + " " + item.Ho
-									+ " " + item.Ten + '</p>';
-							//resultHtml+='<h2><a href="#">'+item.title+'</a></h2>';
-							//resultHtml+='<p>'+item.post.replace(highlight, '<span class="highlight">'+highlight+'</span>')+'</p>';
-							//resultHtml+='<a href="#" class="readMore">Read more..</a>'
-							resultHtml += '</div>';
+							if (!(i%2)) {
+								resultHtml += '<tr class="even">';
+							} else {
+								resultHtml += '<tr class="odd">';	
+							}
+							resultHtml += '<td>' + i + '</td>';
+							resultHtml += '<td>' + highlight(item.ID, pattern) + '</td>';
+							resultHtml += '<td>' + highlight(item.Ho, pattern) + '</td>';
+							resultHtml += '<td>' + highlight(item.Ten, pattern) + '</td>';
+							resultHtml += '<td>' + item.NgaySinh + '</td>';
+							resultHtml += '<td>' + highlight(item.LopCu, pattern) + '</td>';
+							resultHtml += '<td>' + highlight(item.LopCu, pattern) + '</td>';
+							resultHtml += '<td>' + item.TinhTrang + '</td>';
+							resultHtml += '</tr>';
 						});
 
-						$('div#results').html(resultHtml);
+						$('tbody#results').html(resultHtml);
 					}
 
 					$('form').submit(function(e) {

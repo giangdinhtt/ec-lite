@@ -36,7 +36,73 @@ form{
 }
 
       span.highlight{
-       background:#FCFFA3;
-       padding:3px;
+       background:#dce6ee;
        font-weight:bold;
 }
+
+/* tables */
+table.tablesorter {
+    font-family:arial;
+    background-color: #CDCDCD;
+    margin:10px 0pt 15px;
+    font-size: 8pt;
+    width: 100%;
+    text-align: left;
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+    background-color: #e6EEEE;
+    border: 1px solid #FFF;
+    font-size: 8pt;
+    padding: 4px;
+}
+table.tablesorter thead tr .header {
+    background-image: url(bg.gif);
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+}
+table.tablesorter tbody td {
+    color: #3D3D3D;
+    padding: 4px;
+    background-color: #FFF;
+    vertical-align: top;
+}
+table.tablesorter tbody tr.odd td {
+    background-color:#F0F0F6;
+}
+table.tablesorter thead tr .headerSortUp {
+    background-image: url(asc.gif);
+}
+table.tablesorter thead tr .headerSortDown {
+    background-image: url(desc.gif);
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+background-color: #8dbdd8;
+}
+
+* {margin:0; padding:0; outline:none}
+body {font:11px Verdana, Arial, Helvetica, sans-serif; margin:25px; background:#fff url(../images/bg.gif) repeat-x; color:#091f30}
+
+.trainee-list {width:980px; border-left:1px solid #c6d5e1; border-top:1px solid #c6d5e1; border-bottom:none; margin:0 auto 15px}
+.trainee-list th {background:url(../images/header-bg.gif); text-align:left; color:#cfdce7; border:1px solid #fff; border-right:none}
+.trainee-list th {font-size:10px; padding:6px 8px 8px}
+.trainee-list td {padding:4px 6px 6px; border-bottom:1px solid #c6d5e1; border-right:1px solid #c6d5e1}
+.trainee-list .head {background:url(../images/sort.gif) 7px center no-repeat; cursor:pointer; padding-left:18px}
+.trainee-list .desc, .trainee-list .asc {background:url(../images/header-selected-bg.gif)}
+.trainee-list .desc {background:url(../images/desc.gif) 7px center no-repeat; cursor:pointer; padding-left:18px}
+.trainee-list .asc {background:url(../images/asc.gif) 7px  center no-repeat; cursor:pointer; padding-left:18px}
+.trainee-list .head:hover, .trainee-list .desc:hover, .trainee-list .asc:hover {color:#fff}
+.trainee-list tr.even {background:#fff}
+.trainee-list tr.odd {background:#ecf2f6}
+.trainee-list tr.even:hover {background:#ecf2f6}
+.trainee-list tr.odd:hover {background:#dce6ee}
+.trainee-list td.evenselected {background:#ecf2f6}
+.trainee-list td.oddselected {background:#dce6ee}
+
+#controls {width:980px; margin:0 auto; height:20px}
+#perpage {float:left; width:200px}
+#perpage select {float:left; font-size:11px}
+#perpage span {float:left; margin:2px 0 0 5px}
+#navigation {float:left; width:580px; text-align:center}
+#navigation img {cursor:pointer}
+#summary {float:right; text-align:right; margin:2px 0 5px 0;}
