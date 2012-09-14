@@ -2,6 +2,8 @@ package org.cath.ec.servlet;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.Arrays;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -37,8 +39,22 @@ public class JSONServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
-        sendString(response, DataConnection.search(request.getParameter("q")));
-        System.out.println(request.getParameter("q").toString());
+        String[] fields = request.getParameterValues("fields");
+        sendString(response, DataConnection.search(request.getParameter("keyword").trim(), fields));
+        Enumeration Names = request.getParameterNames();
+        while (Names.hasMoreElements()) {
+            String str = (String) Names.nextElement();
+            String[] Values = request.getParameterValues(str);
+            if (Values.length == 1) {
+                String paramValue = Values[0];
+                if (paramValue.length() == 0)
+                    System.out.println(str + "=<no value>");
+                else
+                    System.out.println(str + "=\"" + paramValue + "\"");
+            } else {
+                System.out.println(str + "=" + Arrays.toString(Values));
+            }
+        }
     }
 
     protected void sendString(HttpServletResponse response, String data) throws IOException {

@@ -104,6 +104,46 @@ public class DataConnection {
         return jsonString;
     }
 
+    public static String search(String keyword, String[] fields) {
+        String jsonString = null;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        StringBuilder builder = new StringBuilder("select * from XepLop where 1=0");
+        for (String field : fields) {
+            builder.append(String.format(" or " + field + " like \'%%%s%%\'",keyword));
+        }
+        try {
+            conn = DataConnection.connect();
+            String query = String.format("select * from XepLop where Ten like \'%%%s%%\';", keyword);
+            System.out.println(builder.toString());
+            ps = conn.prepareStatement(builder.toString());
+            ResultSet rs = ps.executeQuery();
+            System.out.println("ID\tTenThanh\tHo\tTen\tNgaySinh\tLopCu\tLopMoi\tTinhTrang");
+            JSONArray arr = new JSONArray();
+            int idx = 0;
+            while (rs.next()) {
+                int id = rs.getInt("ID");
+                String tenThanh = rs.getString("TenThanh");
+                String ho = rs.getString("Ho");
+                String ten = rs.getString("Ten");
+                String ngaySinh = rs.getString("NgaySinh");
+                String lopCu = rs.getString("LopCu");
+                String tinhTrang = rs.getString("TinhTrang");
+                String lopMoi = rs.getString("LopMoi");
+                System.out.println(id + "\t" + tenThanh + "\t" + ho + "\t" + ten + "\t" + ngaySinh + "\t" + lopCu + "\t" + lopMoi + "\t" + tinhTrang);
+                JSONObject json = new JSONObject().put("ID", id).put("TenThanh", tenThanh).put("Ho", ho).put("Ten", ten).put("NgaySinh", ngaySinh).put("LopCu", lopCu).put("LopMoi", lopMoi).put("TinhTrang", tinhTrang);
+                arr.put(idx++, json);
+            }
+            jsonString = arr.toString();
+            ps.close();
+            conn.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return jsonString;
+    }
+
     public static boolean update(String keyword) {
         boolean success = false;
 /*        //cau truy van update du lieu
