@@ -13,5 +13,11 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/shiro-core-1.2.0.jar" sourcepath="WebContent/WEB-INF/lib/shiro-root-1.2.0-source-release.zip">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/Ec-lite/WebContent/WEB-INF/lib/shiro-root-1.2.0-source-release.zip!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/shiro-web-1.2.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
