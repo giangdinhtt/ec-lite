@@ -25,4 +25,17 @@
     <url-pattern>/JSONServlet</url-pattern>
     <url-pattern>/json.ec</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CentralServlet</display-name>
+    <servlet-name>CentralServlet</servlet-name>
+    <servlet-class>org.cath.ec.servlet.CentralServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CentralServlet</servlet-name>
+    <url-pattern>/CentralServlet</url-pattern>
+    <url-pattern>/remove.ec</url-pattern>
+    <url-pattern>/add.ec</url-pattern>
+    <url-pattern>/update.ec</url-pattern>
+  </servlet-mapping>
 </web-app>

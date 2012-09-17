@@ -2,17 +2,25 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Instant Search</title>
+<title>BẢNG XẾP LỚP - XỨ ĐOÀN CHÚA HIỂN LINH</title>
 <link type="text/css" rel="stylesheet" href="style/style.css">
 <script type="text/javascript" src="scripts/jquery-1.8.1.js"></script>
 <script language="javascript" type="text/javascript">
 	String.prototype.trimAll = function() {
-		return this.replace(/^\s+|(\s+(?!\S))/mg, " ");
+		return this.replace(/^\s+|(\s+(?!\S))/mg, " ").trim();
 	};
+
+	String.prototype.normalize = function() {
+        return this.replace(/\s{2,}/g, ' ');
+    };
 
 	String.prototype.insert = function(position, str) {
 		return [this.slice(0, position), str, this.slice(position)].join('');
 	};
+
+	function checkNull(str) {
+	    return str ? str : '';	
+	}
 
 	function highlight(str, pattern) {
 		var indexes = [];
@@ -35,45 +43,132 @@
 		var errorMsg = document.getElementById("error-msg");
 		errorMsg.innerHTML = "<font color=#FF0000>" + strError + "</font>";
 	}
+ 
+	function update(item) {
+		alert('in update function');
+		return false;
+    }
+
+	function remove(item) {
+        alert('in remove function');
+        return false;
+    }
+
+	$(document).ready(function () {
+	    // if user clicked on button, the overlay layer or the dialogbox, close the dialog  
+	    $('a.btn-ok, #dialog-overlay, #dialog-box').click(function () {     
+	        $('#dialog-overlay, #dialog-box').hide();       
+	        return false;
+	    });
+
+	    // if user resize the window, call the same function again
+	    // to make sure the overlay fills the screen and dialogbox aligned to center    
+	    $(window).resize(function () {
+	        
+	        //only do it if the dialog box is not hidden
+	        if (!$('#dialog-box').is(':hidden')) popup();       
+	    }); 
+	});
+
+	//Popup dialog
+	function popup(message) {
+	        
+	    // get the screen height and width  
+	    var maskHeight = $(document).height();  
+	    var maskWidth = $(window).width();
+	    
+	    // calculate the values for center alignment
+	    var dialogTop =  (maskHeight/3) - ($('#dialog-box').height());  
+	    var dialogLeft = (maskWidth/2) - ($('#dialog-box').width()/2); 
+	    
+	    // assign values to the overlay and dialog box
+	    $('#dialog-overlay').css({height:maskHeight, width:maskWidth}).show();
+	    $('#dialog-box').css({top:dialogTop, left:dialogLeft}).show();
+	    
+	    // display the message
+	    $('#dialog-message').html(message);
+	            
+	}
 </script>
 </head>
 <body>
 	<form id="search-form" method="POST" action="json.ec">
-		<input type="text" id="q" name="keyword" />
-		<input type="submit" value="Search" />
-		<div id="error-msg"></div>
+	   <div class="query">
+	      <div class="input-append">
+            <input type="text" id="q" name="keyword" />
+            <input type="submit" class="btn" value="Search" />
+          </div>
+          <div id="error-msg"></div>	       
+	   </div>
 		<div id="search-options">
-		  <input type="checkbox" name="removeAccent" id="removeAccent" value="on" checked>
-		  <input type="checkbox" name="fields" id="matchID" value="ID">
-		  <input type="checkbox" name="fields" id="matchTenThanh" value="TenThanh">
-		  <input type="checkbox" name="fields" id="matchHo" value="Ho">
-		  <input type="checkbox" name="fields" id="matchTen" value="Ten">
-		  <input type="checkbox" name="fields" id="matchLopCu" value="LopCu">
-		  <input type="checkbox" name="fields" id="matchLopMoi" value="LopMoi">
+		<ul>
+		  <li>
+		      <label>
+		          <input type="checkbox" name="removeAccent" id="removeAccent" value="on" checked>
+		          <span>Không dùng dấu</span>
+		      </label>
+		  </li>
+		  <li>
+		      <label>
+		          <input type="checkbox" name="fields" id="matchID" value="ID">        
+		          <span>Mã số</span>
+		      </label>
+		  </li>
+		  <li>
+              <label>
+                  <input type="checkbox" name="fields" id="matchTenThanh" value="TenThanh">
+                  <span>Tên Thánh</span>
+              </label>
+          </li>
+          <li>
+              <label>
+                  <input type="checkbox" name="fields" id="matchHo" value="Ho">
+                  <span>Họ và chữ lót</span>
+              </label>
+          </li>
+          <li>
+              <label>
+                  <input type="checkbox" name="fields" id="matchTen" value="Ten" checked>
+                  <span>Tên</span>
+              </label>
+          </li>
+          <li>
+              <label>
+                  <input type="checkbox" name="fields" id="matchLopCu" value="LopCu">
+                  <span>Lớp cũ</span>
+              </label>
+          </li>
+          <li>
+              <label>
+                  <input type="checkbox" name="fields" id="matchLopMoi" value="LopMoi">
+                  <span>Lớp mới</span>
+              </label>
+          </li>
+		</ul>
 		</div>
 	</form>
 
-    <div id="summary">Displaying <span id="total-records"></span> record </div>
-	<table id="trainee-list" class="trainee-list" border="0" cellpadding="0" cellspacing="1">
+    <div id="trainee-list">
+    <div id="summary">Tìm thấy <span id="total-records">0</span> kết quả</div>
+	<table class="trainee-list" border="0" cellpadding="0" cellspacing="1">
 		<thead>
 			<tr>
 			    <th class="header">#</th>
-			    <th class="header">ID</th>
-				<th class="header">First Name</th>
-				<th class="header">Last Name</th>
-				<th class="header">Age</th>
-				<th class="header">Total</th>
-				<th class="header">Difference</th>
-				<th class="header">Date</th>
+			    <th class="header">Mã số</th>
+			    <th class="header">Tên thánh</th>
+				<th class="header">Họ và chữ lót</th>
+				<th class="header">Tên</th>
+				<th class="header">Ngày sinh</th>
+				<th class="header">Lớp cũ</th>
+				<th class="header">Lớp mới</th>
+				<th class="header">Tình trạng</th>
+				<th class="header">&nbsp;</th>
 			</tr>
 		</thead>
 		<tbody id="results">
 		</tbody>
 	</table>
-
-
-
-<!-- 	<div id="results"></div> -->
+</div>
 	<script type="text/javascript">
 		var runningRequest = false;
 		var request;
@@ -81,24 +176,29 @@
 		$('input#q').keyup(
 				function(e) {
 					var keyCode = (e.which) ? e.which : event.keyCode;
+					console.log("Key code: " + keyCode);
 					// Don't allow input special character
 					if (((keyCode >= 48) && (keyCode <= 57))
 							|| ((keyCode >= 65) && (keyCode <= 90))
 							|| ((keyCode >= 97) && (keyCode <= 122))
+							//|| ((keyCode >= 37) && (keyCode <= 40))
 							|| keyCode == 32 || keyCode == 46 || keyCode == 8
 							|| keyCode == 9 || keyCode == 95 || keyCode == 45
-							|| keyCode == 13) {
+							|| keyCode == 13 || keyCode == 16 || keyCode == 20
+							|| keyCode == 17 || keyCode == 18 || keyCode == 231) {
 					} else {
+						console.log("Special characters is not allowed: " + String.fromCharCode(keyCode));
 						throwError("Special characters is not allowed !");
 						e.preventDefault();
 						return;
 					}
 					e.preventDefault();
 					var $q = $(this);
-					console.log($('#search-form').serialize());
 					if ($q.val() == '') {
+						$('span#total-records').html('0');
 						$('tbody#results').html('');
-						throwError("Please enter Search String !");
+						return false;
+					} else if ($q.val().length < 2) {
 						return false;
 					}
 
@@ -108,14 +208,13 @@
 					}
 					runningRequest = true;
 					request = $.post('json.ec', $('#search-form').serializeArray(), function(data, textStatus) {
-						showResults(data, $q.val());
+						showResults(data, $q.val().trimAll().normalize());
 						runningRequest = false;
 						console.log(textStatus);
 					}, "json");
 
 					//Create HTML structure for the results and insert it on the result div
 					function showResults(data, pattern) {
-						console.log("Show result " + data.length);
 						$('span#total-records').html(data.length);
 						var resultHtml = '';
 						$.each(data, function(i, item) {
@@ -124,15 +223,17 @@
 							} else {
 								resultHtml += '<tr class="odd">';	
 							}
-							resultHtml += '<td>' + i + '</td>';
-							resultHtml += '<td>' + highlight(item.ID, pattern) + '</td>';
-							resultHtml += '<td>' + highlight(item.Ho, pattern) + '</td>';
-							resultHtml += '<td>' + highlight(item.Ten, pattern) + '</td>';
-							resultHtml += '<td>' + item.NgaySinh + '</td>';
-							resultHtml += '<td>' + highlight(item.LopCu, pattern) + '</td>';
-							resultHtml += '<td>' + highlight(item.LopCu, pattern) + '</td>';
-							resultHtml += '<td>' + item.TinhTrang + '</td>';
-							resultHtml += '</tr>';
+							resultHtml += '<td>' + (i+1) + '</td>';
+							resultHtml += '<td>' + highlight(checkNull(item.ID), pattern) + '</td>';
+							resultHtml += '<td>' + highlight(checkNull(item.TenThanh), pattern) + '</td>';
+							resultHtml += '<td>' + highlight(checkNull(item.Ho), pattern) + '</td>';
+							resultHtml += '<td>' + highlight(checkNull(item.Ten), pattern) + '</td>';
+							resultHtml += '<td>' + checkNull(item.NgaySinh) + '</td>';
+							resultHtml += '<td>' + highlight(checkNull(item.LopCu), pattern) + '</td>';
+							resultHtml += '<td>' + highlight(checkNull(item.LopMoi), pattern) + '</td>';
+							resultHtml += '<td>' + checkNull(item.TinhTrang) + '</td>';
+	                        resultHtml += '<td align="center"><a href="javascript:update(' + item.ID + ');">Sửa</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:remove(' + item.ID + ');">Xóa</a></td>';
+	                        resultHtml += '</tr>';
 						});
 
 						$('tbody#results').html(resultHtml);
