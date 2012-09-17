@@ -1,8 +1,5 @@
 package org.cath.ec.dao;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
@@ -15,6 +12,7 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class DataConnection {
@@ -68,6 +66,14 @@ public class DataConnection {
         sysout.println(search("giang"));
     }
 
+    public static JSONObject putJSONValue(JSONObject json, String key, Object value) throws JSONException {
+        if (value == null) {
+            value = JSONObject.NULL;
+        }
+
+        return json.put(key, value);
+    }
+
     public static String search(String keyword) {
         String jsonString = null;
         Connection conn = null;
@@ -91,7 +97,16 @@ public class DataConnection {
                 String tinhTrang = rs.getString("TinhTrang");
                 String lopMoi = rs.getString("LopMoi");
                 System.out.println(id + "\t" + tenThanh + "\t" + ho + "\t" + ten + "\t" + ngaySinh + "\t" + lopCu + "\t" + lopMoi + "\t" + tinhTrang);
-                JSONObject json = new JSONObject().put("ID", id).put("TenThanh", tenThanh).put("Ho", ho).put("Ten", ten).put("NgaySinh", ngaySinh).put("LopCu", lopCu).put("LopMoi", lopMoi).put("TinhTrang", tinhTrang);
+                //JSONObject json = new JSONObject().put("ID", id).put("TenThanh", tenThanh).put("Ho", ho).put("Ten", ten).put("NgaySinh", ngaySinh).put("LopCu", lopCu).put("LopMoi", lopMoi).put("TinhTrang", tinhTrang);
+                JSONObject json = new JSONObject().put("ID", id);
+                json = putJSONValue(json, "TenThanh", tenThanh);
+                json = putJSONValue(json, "Ho", ho);
+                json = putJSONValue(json, "Ten", ten);
+                json = putJSONValue(json, "NgaySinh", ngaySinh);
+                System.out.println("Ngaysinh: " + json.get("NgaySinh"));
+                json = putJSONValue(json, "LopCu", lopCu);
+                json = putJSONValue(json, "LopMoi", lopMoi);
+                json = putJSONValue(json, "TinhTrang", tinhTrang);
                 arr.put(idx++, json);
             }
             jsonString = arr.toString();
@@ -104,17 +119,24 @@ public class DataConnection {
         return jsonString;
     }
 
-    public static String search(String keyword, String[] fields) {
+    public static String search(String keyword, String[] fields, boolean removeAccent) {
         String jsonString = null;
         Connection conn = null;
         PreparedStatement ps = null;
-        StringBuilder builder = new StringBuilder("select * from XepLop where 1=0");
-        for (String field : fields) {
-            builder.append(String.format(" or " + field + " like \'%%%s%%\'",keyword));
+        StringBuilder builder = new StringBuilder("select * from XepLop");
+        if (removeAccent) {
+            builder.append(" where 1=0");
+            for (String field : fields) {
+                builder.append(String.format(" or %s like \'%%%s%%\'", field, keyword));
+            }
+        } else {
+            builder.append(" where 1=0 binary");
+            for (String field : fields) {
+                builder.append(String.format(" or upper(%s) like upper(\'%%%s%%\')", field, keyword));
+            }
         }
         try {
             conn = DataConnection.connect();
-            String query = String.format("select * from XepLop where Ten like \'%%%s%%\';", keyword);
             System.out.println(builder.toString());
             ps = conn.prepareStatement(builder.toString());
             ResultSet rs = ps.executeQuery();
@@ -131,7 +153,14 @@ public class DataConnection {
                 String tinhTrang = rs.getString("TinhTrang");
                 String lopMoi = rs.getString("LopMoi");
                 System.out.println(id + "\t" + tenThanh + "\t" + ho + "\t" + ten + "\t" + ngaySinh + "\t" + lopCu + "\t" + lopMoi + "\t" + tinhTrang);
-                JSONObject json = new JSONObject().put("ID", id).put("TenThanh", tenThanh).put("Ho", ho).put("Ten", ten).put("NgaySinh", ngaySinh).put("LopCu", lopCu).put("LopMoi", lopMoi).put("TinhTrang", tinhTrang);
+                JSONObject json = new JSONObject().put("ID", id);
+                json = putJSONValue(json, "TenThanh", tenThanh);
+                json = putJSONValue(json, "Ho", ho);
+                json = putJSONValue(json, "Ten", ten);
+                json = putJSONValue(json, "NgaySinh", ngaySinh);
+                json = putJSONValue(json, "LopCu", lopCu);
+                json = putJSONValue(json, "LopMoi", lopMoi);
+                json = putJSONValue(json, "TinhTrang", tinhTrang);
                 arr.put(idx++, json);
             }
             jsonString = arr.toString();

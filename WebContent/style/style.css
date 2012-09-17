@@ -1,10 +1,10 @@
 @CHARSET "ISO-8859-1";
 form{
-      margin:15px;
+      margin:15px 15px 5px 15px;
       padding:5px;
       border-bottom:1px solid #ddd;
     }
-      form input[type=submit]{display:none;}
+/*       form input[type=submit]{display:none;} */
 
       div#results{
         padding:10px 0px 0px 15px;
@@ -81,8 +81,10 @@ background-color: #8dbdd8;
 }
 
 * {margin:0; padding:0; outline:none}
-body {font:11px Verdana, Arial, Helvetica, sans-serif; margin:25px; background:#fff url(../images/bg.gif) repeat-x; color:#091f30}
+body {font:11px Verdana, Arial, Helvetica, sans-serif; margin:25px; background:#fff url(../images/bg.gif) repeat-x; color:#091F30}
+input, textarea, select {padding: 4px;}
 
+#summary, #trainee-list {width:980px; margin: 0 auto 15px;}
 .trainee-list {width:980px; border-left:1px solid #c6d5e1; border-top:1px solid #c6d5e1; border-bottom:none; margin:0 auto 15px}
 .trainee-list th {background:url(../images/header-bg.gif); text-align:left; color:#cfdce7; border:1px solid #fff; border-right:none}
 .trainee-list th {font-size:10px; padding:6px 8px 8px}
@@ -99,10 +101,65 @@ body {font:11px Verdana, Arial, Helvetica, sans-serif; margin:25px; background:#
 .trainee-list td.evenselected {background:#ecf2f6}
 .trainee-list td.oddselected {background:#dce6ee}
 
+/*
+* Search box
+*/
+#search-form input[type=text]{position: relative;margin-bottom: 0;font-size: 14px;vertical-align: top;-webkit-border-radius: 3px 0 0 3px;border-radius: 3px 0 0 3px;display: inline-block;width: 330px;margin-left: 0;background-color: white;border: 1px solid #CCC;-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);-webkit-transition: border linear 0.2s, box-shadow linear 0.2s;height: 20px;}
+.query {display: block; margin: auto; text-align: center;}
+
+/*
+* Error message
+*/
+#error-msg {height: 15px; margin-top: 5px; text-align: center;}
+
+/*
+* Search options
+*/
+#search-options {margin: 10px auto;}
+#search-options ul {text-align: center; auto; padding: 0; list-style-type: none; list-style-image: none; }
+#search-options li {display: inline; padding: 0 3px;}
+#search-options ul li a {text-decoration:none; margin: 4px; padding: 5px 20px 5px 20px; color: blue; background: pink;}
+#search-options ul li a:hover {color: purple; background: yellow;} 
+
+/*
+* Search results
+*/
+#summary {float:right; text-align:right; margin:2px 0 5px 0; font-weight:bold;}
+
 #controls {width:980px; margin:0 auto; height:20px}
 #perpage {float:left; width:200px}
 #perpage select {float:left; font-size:11px}
 #perpage span {float:left; margin:2px 0 0 5px}
 #navigation {float:left; width:580px; text-align:center}
 #navigation img {cursor:pointer}
-#summary {float:right; text-align:right; margin:2px 0 5px 0;}
+
+
+button, input[type="button"], input[type="reset"], input[type="submit"] {
+cursor: pointer;
+-webkit-appearance: button;
+}
+
+.btn {
+cursor: pointer;
+display: inline-block;
+background-color: #E6E6E6;
+background-repeat: no-repeat;
+background-image: -webkit-linear-gradient(white, white 25%, #E6E6E6);
+padding: 6px 14px 6px;
+text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+color: #333;
+font-size: 13px;
+line-height: normal;
+border: 1px solid #CCC;
+border-bottom-color: #BBB;
+border-radius: 4px;
+-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
+box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
+-webkit-transform-style: preserve-3d;
+-webkit-transition: 0.1s linear all;
+transition: 0.1s linear all;
+}
+
+.input-append input {position: relative;margin: 0;font-size: 14px;vertical-align: top;}
+
+.input-append input {margin-left: -5px;-webkit-border-radius: 0 3px 3px 0;}
