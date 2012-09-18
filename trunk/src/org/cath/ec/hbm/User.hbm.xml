@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 19, 2012 12:31:23 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="org.cath.ec.model.User" table="ec_user" catalog="ec">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="username" type="string">
+            <column name="username" length="50" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="50" />
+        </property>
+        <property name="signature" type="string">
+            <column name="signature" length="50" />
+        </property>
+        <property name="securityQuestion" type="string">
+            <column name="security_question" />
+        </property>
+        <property name="securityAnswer" type="string">
+            <column name="security_answer" />
+        </property>
+        <property name="lastLoginDate" type="timestamp">
+            <column name="last_login_date" length="19" />
+        </property>
+        <property name="lastLoginIp" type="string">
+            <column name="last_login_ip" length="15" />
+        </property>
+        <property name="loginAttempt" type="java.lang.Integer">
+            <column name="login_attempt" />
+        </property>
+        <property name="isActive" type="java.lang.Boolean">
+            <column name="is_active" />
+        </property>
+        <property name="isLocked" type="java.lang.Boolean">
+            <column name="is_locked" />
+        </property>
+        <many-to-one name="profile" class="org.cath.ec.model.Profile" column="profile_id"
+            unique="true" insert="false" update="false" not-found="ignore" cascade="all"/>
+        <set name="roles" table="ec_users_roles" cascade="all">
+            <key column="user_id"/>
+            <many-to-many column="role_id" unique="true" class="org.cath.ec.model.Role"/>
+        </set>
+    </class>
+</hibernate-mapping>
