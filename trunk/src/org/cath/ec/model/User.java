@@ -14,13 +14,24 @@ import java.util.Set;
 /*@Entity
 @Table(name="users")
 @Cache(usage= CacheConcurrencyStrategy.READ_WRITE)*/
-public class User  {
+public class User extends AbstractModel  {
 
     private Long id;
     private String username;
     private String email;
     private String password;
-    private Set<Role> roles = new HashSet<Role>();
+    private Set<Role> roles;
+
+    public User() {
+    	super();
+    	roles = new HashSet<Role>();
+    }
+
+	public User(String username, String password) {
+		this();
+		this.username = username;
+		this.password = password;
+	}
 
     /*@Id
     @GeneratedValue

@@ -1,5 +1,6 @@
 package org.cath.ec.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Set;
 /*@Entity
 @Table(name="roles")
 @Cache(usage= CacheConcurrencyStrategy.READ_WRITE)*/
-public class Role {
+public class Role extends AbstractModel {
 
     private Long id;
 
@@ -17,16 +18,18 @@ public class Role {
     private String description;
 
     private Set<String> permissions;
-/*
+
     protected Role() {
+    	super();
+    	permissions = new HashSet<String>();
     }
 
     public Role(String name) {
+    	this();
         this.name = name;
     }
 
-
-    @Id
+/*    @Id
     @GeneratedValue
     public Long getId() {
         return id;
