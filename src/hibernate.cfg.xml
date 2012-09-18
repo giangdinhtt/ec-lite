@@ -1,49 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC
-		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-    <session-factory>
-        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/gdgl?useUnicode=true</property>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">sa12345</property>
-        <property name="hibernate.connection.useUnicode">true</property>
-		<property name="hibernate.connection.characterEncoding">UTF-8</property>
-		<!--
+ <session-factory name="">
+  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/ec?useUnicode=true</property>
+  <property name="hibernate.connection.username">root</property>
+  <property name="hibernate.connection.password">sa12345</property>
+  <property name="hibernate.connection.useUnicode">true</property>
+  <property name="hibernate.connection.characterEncoding">UTF-8</property>
+  <!--
 		 Enable Hibernate's automatic session context management 
         <property name="current_session_context_class">thread</property>
          Disable the second-level cache  
         <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
 		-->
-		<property name="hibernate.dialect">org.hibernate.dialect.MySQLMyISAMDialect</property>
-		<property name="hibernate.show_sql">true</property>
-		<mapping class="com.binhthuan.catechist.server.domain.Account"/>
-		<mapping class="com.binhthuan.catechist.server.domain.Area"/>
-		<mapping class="com.binhthuan.catechist.server.domain.AttendanceDetail"/>
-		<mapping class="com.binhthuan.catechist.server.domain.AttendanceList"/>
-		<mapping class="com.binhthuan.catechist.server.domain.AttendanceStatus"/>
-		<mapping class="com.binhthuan.catechist.server.domain.Course"/>
-		<mapping class="com.binhthuan.catechist.server.domain.CourseTranscript"/>
-		<mapping class="com.binhthuan.catechist.server.domain.Date"/>
-		<mapping class="com.binhthuan.catechist.server.domain.Function"/>
-		<mapping class="com.binhthuan.catechist.server.domain.Grade"/>
-		<mapping class="com.binhthuan.catechist.server.domain.Parent"/>
-		<mapping class="com.binhthuan.catechist.server.domain.Person"/>
-		<mapping class="com.binhthuan.catechist.server.domain.Plan"/>
-		<mapping class="com.binhthuan.catechist.server.domain.PlanDetail"/>
-		<mapping class="com.binhthuan.catechist.server.domain.Role"/>
-		<mapping class="com.binhthuan.catechist.server.domain.Schedule"/>
-		<mapping class="com.binhthuan.catechist.server.domain.ScheduleStatus"/>
-		<mapping class="com.binhthuan.catechist.server.domain.Shift"/>
-		<mapping class="com.binhthuan.catechist.server.domain.Status"/>
-		<mapping class="com.binhthuan.catechist.server.domain.Test"/>
-		<mapping class="com.binhthuan.catechist.server.domain.TestType"/>
-		<mapping class="com.binhthuan.catechist.server.domain.Trainee"/>
-		<mapping class="com.binhthuan.catechist.server.domain.TraineeStatus"/>
-		<mapping class="com.binhthuan.catechist.server.domain.Trainer"/>
-		<mapping class="com.binhthuan.catechist.server.domain.TrainerStatus"/>
-		<mapping class="com.binhthuan.catechist.server.domain.Venue"/>
-		<mapping class="com.binhthuan.catechist.server.domain.Year"/>
-    </session-factory>
+  <property name="hibernate.dialect">org.hibernate.dialect.MySQLMyISAMDialect</property>
+  <property name="hibernate.show_sql">true</property>
+ </session-factory>
 </hibernate-configuration>

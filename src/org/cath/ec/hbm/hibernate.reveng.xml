@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table-filter match-catalog="ec" match-name="ec_course" />
+	<table-filter match-catalog="ec" match-name="ec_date" />
+	<table-filter match-catalog="ec" match-name="ec_grade" />
+	<table-filter match-catalog="ec" match-name="ec_permission" />
+	<table-filter match-catalog="ec" match-name="ec_profile" />
+	<table-filter match-catalog="ec" match-name="ec_role" />
+	<table-filter match-catalog="ec" match-name="ec_roles_permissions" />
+	<table-filter match-catalog="ec" match-name="ec_room" />
+	<table-filter match-catalog="ec" match-name="ec_semester" />
+	<table-filter match-catalog="ec" match-name="ec_session" />
+	<table-filter match-catalog="ec" match-name="ec_user" />
+	<table-filter match-catalog="ec" match-name="ec_users_roles" />
+	<table-filter match-catalog="ec" match-name="ec_year" />
+    <table catalog="ec" name="ec_grade" class="org.cath.ec.model.Grade"/>
+    <table catalog="ec" name="ec_permission" class="org.cath.ec.model.Permission"></table>
+	<table catalog="ec" name="ec_room" class="org.cath.ec.model.Room"></table>
+	<table catalog="ec" name="ec_users_roles"></table>
+	<table catalog="ec" name="ec_date" class="org.cath.ec.model.Date"></table>
+	<table catalog="ec" name="ec_role" class="org.cath.ec.model.Role"></table>
+	<table catalog="ec" name="ec_profile" class="org.cath.ec.model.Profile"></table>
+	<table catalog="ec" name="ec_course" class="org.cath.ec.model.Course"/>
+	<table catalog="ec" name="ec_semester" class="org.cath.ec.model.Semester"></table>
+	<table catalog="ec" name="ec_year" class="org.cath.ec.model.Year"></table>
+	<table catalog="ec" name="ec_session" class="org.cath.ec.model.Session"></table>
+	<table catalog="ec" name="ec_roles_permissions"></table>
+	<table catalog="ec" name="ec_user" class="org.cath.ec.model.User"></table>
+</hibernate-reverse-engineering>
