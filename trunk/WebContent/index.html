@@ -92,6 +92,16 @@
 </script>
 </head>
 <body>
+<div id="loading" class="loading-invisible">
+  <p>Your content (like a loading GIF)</p>
+</div>
+<script type="text/javascript">
+  document.getElementById("loading").className = "loading-visible";
+  var hideDiv = function(){document.getElementById("loading").className = "loading-invisible";};
+  var oldLoad = window.onload;
+  var newLoad = oldLoad ? function(){hideDiv.call(this);oldLoad.call(this);} : hideDiv;
+  window.onload = newLoad;
+</script>
 	<form id="search-form" method="POST" action="json.ec">
 	   <div class="query">
 	      <div class="input-append">

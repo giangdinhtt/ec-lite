@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="style/style2.css">
+<script type="text/javascript" src="scripts/jquery-1.8.1.js"></script>
+</head>
+<body>
+  <div id="loading" class="loading-invisible">
+    <p>Your content (like a loading GIF)</p>
+  </div>
+  <script type="text/javascript">
+			document.getElementById("loading").className = "loading-visible";
+			var hideDiv = function() {
+				document.getElementById("loading").className = "loading-invisible";
+			};
+			var oldLoad = window.onload;
+			var newLoad = oldLoad ? function() {
+				hideDiv.call(this);
+				oldLoad.call(this);
+			} : hideDiv;
+			window.onload = newLoad;
+		</script>
+  <div class="wrapper">
+    <div id="header" class="header"></div>    
+    <div class="splitpanel" style="position: relative; width: 100%; height: 100%;">
+      <div class="splitpanel-second-container">
+        <div class="title">
+          <em>sub title</em>
+          <h2>Title</h2>
+          <span></span>
+        </div>
+        <div class="container"></div>
+      </div>
+      <div class="splitpanel-first-container">first-container</div>
+      <div class="splitter"></div>
+    </div>
+    <div style="clear: both;"></div>
+    <div class="footer"></div>
+  </div>
+</body>
+</html>
