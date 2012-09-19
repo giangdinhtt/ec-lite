@@ -3,7 +3,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link type="text/css" rel="stylesheet" href="style/style2.css">
+<link type="text/css" rel="stylesheet" href="style/smoothness/jquery-ui-1.8.23.custom.css">
 <script type="text/javascript" src="scripts/jquery-1.8.1.js"></script>
+<script type="text/javascript" src="scripts/jquery-ui-1.8.23.custom.min.js"></script>
+<script type="text/javascript">
+            $(function(){
+                // Accordion
+                $("#accordion").accordion({ header: "h3", fillSpace: true });
+            });
+            $(function() {
+                $( "#accordionResizer" ).resizable({
+                    minHeight: 140,
+                    resize: function() {
+                        $( "#accordion" ).accordion( "resize" );
+                    }
+                });
+            });
+        </script>
+        <style type="text/css">
+            /*demo page css*/
+            body{ font: 62.5% "Trebuchet MS", sans-serif;}
+            .demoHeaders { margin-top: 2em; }
+            #dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
+            #dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
+            ul#icons {margin: 0; padding: 0;}
+            ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
+            ul#icons span.ui-icon {float: left; margin: 0 4px;}
+        </style>
 </head>
 <body>
   <div id="loading" class="loading-invisible">
@@ -22,8 +48,9 @@
 			window.onload = newLoad;
 		</script>
   <div class="wrapper">
-    <div id="header" class="header"></div>    
-    <div class="splitpanel" style="position: relative; width: 100%; height: 100%;">
+    <div id="header" class="header"></div>
+    <div class="splitpanel">
+    <div class="wrap">
       <div class="splitpanel-second-container">
         <div class="title">
           <em>sub title</em>
@@ -32,11 +59,29 @@
         </div>
         <div class="container"></div>
       </div>
-      <div class="splitpanel-first-container">first-container</div>
+      </div>
+      <div class="splitpanel-first-container">
+      <h2 class="demoHeaders">Accordion</h2>
+        <div id="accordion" class="ui-accordion ui-widget ui-helper-reset ui-accordion-icons" role="tablist">
+            <div class="">
+                <h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" role="tab" aria-expanded="false" aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"></span><span class="ui-icon ui-icon-triangle-1-e"></span><a href="#" tabindex="-1">First</a></h3>
+                <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" style="height: 0px; overflow: auto; display: none; padding-top: 0px; padding-bottom: 0px; " role="tabpanel">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</div>
+            </div>
+            <div class="">
+                <h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" role="tab" aria-expanded="false" aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"></span><span class="ui-icon ui-icon-triangle-1-e"></span><a href="#" tabindex="-1">Second</a></h3>
+                <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" style="height: 0px; overflow: hidden; padding-top: 0px; padding-bottom: 0px; width: 199.5999984741211px; display: none; " role="tabpanel">Phasellus mattis tincidunt nibh.</div>
+            </div>
+            <div class="">
+                <h3 class="ui-accordion-header ui-helper-reset ui-state-active ui-corner-top" role="tab" aria-expanded="true" aria-selected="true" tabindex="0"><span class="ui-icon ui-icon-triangle-1-s"></span><span class="ui-icon ui-icon-triangle-1-s"></span><a href="#" tabindex="-1">Third</a></h3>
+                <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active" style="height: 0px; overflow: auto; display: block; padding-top: 0px; padding-bottom: 0px; " role="tabpanel">Nam dui erat, auctor a, dignissim quis.</div>
+            </div>
+          </div>
+      </div>
       <div class="splitter"></div>
     </div>
     <div style="clear: both;"></div>
     <div class="footer"></div>
   </div>
+  <script type="text/javascript" src="scripts/menu.js"></script>
 </body>
 </html>
