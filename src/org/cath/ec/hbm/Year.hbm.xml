@@ -20,5 +20,25 @@
         <property name="endDate" type="date">
             <column name="end_date" length="10" />
         </property>
+        <set name="semesters" table="ec_semesters_years">
+        	<key column="year_id"/>
+        	<many-to-many class="org.cath.ec.model.Semester" column="semester_id" unique="true"/>
+        </set>
+        <set name="grades" table="ec_grades_years">
+        	<key column="year_id"/>
+        	<many-to-many class="org.cath.ec.model.Grade" column="grade_id" unique="true"/>
+        </set>
+        <set name="sessions" table="ec_sessions_years">
+        	<key column="year_id"/>
+        	<many-to-many class="org.cath.ec.model.Session" column="session_id" unique="true"/>
+        </set>
+        <set name="rooms" table="ec_rooms_years">
+        	<key column="year_id"/>
+        	<many-to-many class="org.cath.ec.model.Room" column="room_id" unique="true"/>
+        </set>
+        <set name="courses" table="ec_course" inverse="true" lazy="true" fetch="select">
+        	<key column="year_id" not-null="true"/>
+        	<one-to-many class="org.cath.ec.model.Course"/>
+        </set>
     </class>
 </hibernate-mapping>

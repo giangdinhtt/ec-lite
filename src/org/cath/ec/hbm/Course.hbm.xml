@@ -20,11 +20,11 @@
         <property name="sessionId" type="java.lang.Integer">
             <column name="session_id" />
         </property>
-        <property name="gradeId" type="java.lang.Integer">
-            <column name="grade_id" />
-        </property>
-        <property name="yearId" type="java.lang.Integer">
-            <column name="year_id" />
-        </property>
+        <many-to-one name="grade" class="org.cath.ec.model.Grade" fetch="select">
+        	<column name="grade_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="year" class="org.cath.ec.model.Year" fetch="select">
+        	<column name="year_id" not-null="true"/>
+        </many-to-one>
     </class>
 </hibernate-mapping>
