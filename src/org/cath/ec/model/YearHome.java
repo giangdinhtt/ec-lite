@@ -12,7 +12,7 @@ import static org.hibernate.criterion.Example.create;
 
 /**
  * Home object for domain model class Year.
- * @see org.cath.ec.model.Year
+ * @see org.cath.ec.model.SchoolYear
  * @author Hibernate Tools
  */
 public class YearHome {
@@ -29,7 +29,7 @@ public class YearHome {
             throw new IllegalStateException("Could not locate SessionFactory in JNDI");
         }
     }
-
+/*
     public void persist(Year transientInstance) {
         log.debug("persisting Year instance");
         try {
@@ -114,4 +114,4 @@ public class YearHome {
             throw re;
         }
     }
-}
+*/}

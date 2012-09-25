@@ -20,8 +20,8 @@
         <property name="description" type="string">
             <column name="description" length="100" />
         </property>
-        <property name="yearId" type="java.lang.Integer">
-            <column name="year_id" />
-        </property>
+        <many-to-one name="schoolYear" class="org.cath.ec.model.SchoolYear">
+            <column name="year_id" not-null="true"/>
+        </many-to-one>
     </class>
 </hibernate-mapping>

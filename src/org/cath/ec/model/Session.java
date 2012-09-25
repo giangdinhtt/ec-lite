@@ -1,6 +1,6 @@
 package org.cath.ec.model;
 
-// Generated Sep 19, 2012 12:31:23 AM by Hibernate Tools 3.4.0.CR1
+// Generated Sep 25, 2012 5:38:21 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 
@@ -14,17 +14,15 @@ public class Session implements java.io.Serializable {
     private String dow;
     private Date startTime;
     private Date endTime;
-    private Integer yearId;
 
     public Session() {
     }
 
-    public Session(String name, String dow, Date startTime, Date endTime, Integer yearId) {
+    public Session(String name, String dow, Date startTime, Date endTime) {
         this.name = name;
         this.dow = dow;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.yearId = yearId;
     }
 
     public Integer getId() {
@@ -65,14 +63,6 @@ public class Session implements java.io.Serializable {
 
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
-    }
-
-    public Integer getYearId() {
-        return this.yearId;
-    }
-
-    public void setYearId(Integer yearId) {
-        this.yearId = yearId;
     }
 
 }

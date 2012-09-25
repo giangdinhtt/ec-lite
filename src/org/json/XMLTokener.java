@@ -30,8 +30,8 @@ SOFTWARE.
  * @author JSON.org
  * @version 2010-12-24
  */
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class XMLTokener extends JSONTokener {
-
 
    /** The table of entity values. It initially contains Character values for
     * amp, apos, gt, lt, quot.

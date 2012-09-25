@@ -1,6 +1,6 @@
 package org.cath.ec.model;
 
-// Generated Sep 19, 2012 12:31:23 AM by Hibernate Tools 3.4.0.CR1
+// Generated Sep 25, 2012 5:38:21 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 
@@ -20,12 +20,17 @@ public class Profile implements java.io.Serializable {
     private String gender;
     private String address;
     private String picture;
+    private User user;
 
     public Profile() {
     }
 
+    public Profile(User user) {
+        this.user = user;
+    }
+
     public Profile(String uid, String patronSaint, String firstname, String lastname, String lowerCaseName,
-            String email, Date dob, String gender, String address, String picture) {
+            String email, Date dob, String gender, String address, String picture, User user) {
         this.uid = uid;
         this.patronSaint = patronSaint;
         this.firstname = firstname;
@@ -36,6 +41,7 @@ public class Profile implements java.io.Serializable {
         this.gender = gender;
         this.address = address;
         this.picture = picture;
+        this.user = user;
     }
 
     public Integer getId() {
@@ -124,6 +130,14 @@ public class Profile implements java.io.Serializable {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public User getUser() {
+        return this.user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }
