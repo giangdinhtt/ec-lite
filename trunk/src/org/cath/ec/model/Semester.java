@@ -1,6 +1,6 @@
 package org.cath.ec.model;
 
-// Generated Sep 19, 2012 12:31:23 AM by Hibernate Tools 3.4.0.CR1
+// Generated Sep 25, 2012 5:38:21 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 
@@ -10,7 +10,6 @@ import java.util.Date;
 public class Semester implements java.io.Serializable {
 
     private Integer id;
-    private Integer yearId;
     private String name;
     private Date startDate;
     private Date endDate;
@@ -18,8 +17,7 @@ public class Semester implements java.io.Serializable {
     public Semester() {
     }
 
-    public Semester(Integer yearId, String name, Date startDate, Date endDate) {
-        this.yearId = yearId;
+    public Semester(String name, Date startDate, Date endDate) {
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -31,14 +29,6 @@ public class Semester implements java.io.Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getYearId() {
-        return this.yearId;
-    }
-
-    public void setYearId(Integer yearId) {
-        this.yearId = yearId;
     }
 
     public String getName() {

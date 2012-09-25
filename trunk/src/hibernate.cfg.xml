@@ -17,5 +17,17 @@
 		-->
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLMyISAMDialect</property>
   <property name="hibernate.show_sql">true</property>
+
+    <mapping resource="org/cath/ec/hbm/Course.hbm.xml"/>
+    <mapping resource="org/cath/ec/hbm/Date.hbm.xml"/>
+    <mapping resource="org/cath/ec/hbm/Grade.hbm.xml"/>
+    <mapping resource="org/cath/ec/hbm/Permission.hbm.xml"/>
+    <mapping resource="org/cath/ec/hbm/Profile.hbm.xml"/>
+    <mapping resource="org/cath/ec/hbm/Role.hbm.xml"/>
+    <mapping resource="org/cath/ec/hbm/Room.hbm.xml"/>
+    <mapping resource="org/cath/ec/hbm/SchoolYear.hbm.xml"/>
+    <mapping resource="org/cath/ec/hbm/Semester.hbm.xml"/>
+    <mapping resource="org/cath/ec/hbm/Session.hbm.xml"/>
+    <mapping resource="org/cath/ec/hbm/User.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

@@ -14,17 +14,17 @@
         <property name="name" type="string">
             <column name="name" length="100" />
         </property>
-        <property name="roomId" type="java.lang.Integer">
-            <column name="room_id" />
-        </property>
-        <property name="sessionId" type="java.lang.Integer">
-            <column name="session_id" />
-        </property>
-        <many-to-one name="grade" class="org.cath.ec.model.Grade" fetch="select">
-        	<column name="grade_id" not-null="true"/>
+        <many-to-one name="room" class="org.cath.ec.model.Room">
+            <column name="room_id" not-null="true"/>
         </many-to-one>
-        <many-to-one name="year" class="org.cath.ec.model.Year" fetch="select">
-        	<column name="year_id" not-null="true"/>
+        <many-to-one name="session" class="org.cath.ec.model.Session">
+            <column name="session_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="grade" class="org.cath.ec.model.Grade">
+            <column name="grade_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="schoolYear" class="org.cath.ec.model.SchoolYear">
+            <column name="year_id" not-null="true"/>
         </many-to-one>
     </class>
 </hibernate-mapping>
