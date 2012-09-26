@@ -39,9 +39,9 @@ CREATE TABLE `ec_course` (
 DROP TABLE IF EXISTS `ec_date`;
 CREATE TABLE `ec_date` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `day` char(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `month` char(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `year` varchar(4) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `day` decimal(2,0) unsigned DEFAULT NULL,
+  `month` decimal(2,0) unsigned DEFAULT NULL,
+  `year` decimal(4,0) unsigned DEFAULT NULL,
   `description` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `year_id` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
