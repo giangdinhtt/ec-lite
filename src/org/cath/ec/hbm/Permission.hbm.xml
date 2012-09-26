@@ -14,7 +14,7 @@
         <property name="pattern" type="string">
             <column name="pattern" />
         </property>
-        <property name="isActive" type="java.lang.Boolean">
+        <property name="isActive" type="java.lang.Boolean" >
             <column name="is_active" />
         </property>
     </class>

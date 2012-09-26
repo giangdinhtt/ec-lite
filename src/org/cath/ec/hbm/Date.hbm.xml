@@ -8,20 +8,17 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <property name="day" type="string">
-            <column name="day" length="2" />
+        <property name="day" type="int">
+            <column name="day" precision="2" scale="0" />
         </property>
-        <property name="month" type="string">
-            <column name="month" length="2" />
+        <property name="month" type="int">
+            <column name="month" precision="2" scale="0" />
         </property>
-        <property name="year" type="string">
-            <column name="year" length="4" />
+        <property name="year" type="int">
+            <column name="year" precision="4" scale="0" />
         </property>
         <property name="description" type="string">
             <column name="description" length="100" />
         </property>
-        <many-to-one name="schoolYear" class="org.cath.ec.model.SchoolYear">
-            <column name="year_id" not-null="true"/>
-        </many-to-one>
     </class>
 </hibernate-mapping>
