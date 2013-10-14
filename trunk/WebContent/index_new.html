@@ -46,7 +46,11 @@
     <div class="home-animation"></div>
   </div>
   <!-- Menu chính -->
-  <div class="main-nav"></div>
+  <div id="main-nav-wrapper" class="main-nav wrapper">
+    <div id="main-nav" class="main-nav inner-wrapper" style="min-height: 100px; background-color: #ff0;">
+	  <div class="main-nav innner"></div>
+	</div>
+  </div>
   <!-- Giao diện tìm kiếm -->
   <div id="search-section" class="search-section">
     <div class="search-bar container">
@@ -77,8 +81,20 @@
     </div>
     <div class="search-results"></div>
   </div>
+  <!-- Linh tinh -->
+  <div class="" style="min-height: 1800px; background-color: #f0f;"></div>
   <script src="js/jquery-1.10.2.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/scripts.js"></script>
+  <script type="text/javascript">
+        $(document).ready(function() {
+    $('#main-nav-wrapper').height($("#main-nav").height());
+    
+    $('#main-nav').affix({
+        offset: { top: $('#main-nav').offset().top }
+    });
+		});	
+        
+        </script>
 </body>
 </html>

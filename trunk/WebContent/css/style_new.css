@@ -1,3 +1,14 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 51, ../sass/screen.scss */
+img {
+  max-width: 100%;
+}
+
 /* line 1, ../sass/modules/_home-owner.scss */
 .fading-panel {
   overflow: hidden;
@@ -31,6 +42,7 @@ body {
 .home {
   position: relative;
   overflow: hidden;
+  min-height: 529px;
 }
 /* line 122, ../sass/modules/_home-owner.scss */
 .user-login-open {
@@ -71,4 +83,86 @@ body {
   -moz-animation-delay: 3s;
   -o-animation-delay: 3s;
   animation-delay: 3s;
+}
+
+/* line 1, ../sass/modules/_main-nav.scss */
+.html--fixed-nav {
+  margin-top: 10vh;
+}
+
+/* line 5, ../sass/modules/_main-nav.scss */
+.main-nav {
+  position: relative;
+  z-index: 9999;
+  background-color: #FFF;
+}
+
+#main-nav.affix {
+    position: fixed;
+    top: 0;
+    width: 100%
+}
+
+/* line 12, ../sass/modules/_main-nav.scss */
+.main-nav.inner-wrapper {
+  position: relative;
+  z-index: 1;
+  padding-right: 5%;
+  -webkit-box-shadow: 0 5px 15px #999999;
+  -moz-box-shadow: 0 5px 15px #999999;
+  box-shadow: 0 5px 15px #999999;
+}
+
+/* line 21, ../sass/modules/_main-nav.scss */
+.main-nav.inner {
+  position: relative;
+  z-index: 1;
+  background-image: url("../images/auger-logo-small.svg");
+  background-position: right center;
+  background-repeat: no-repeat;
+}
+@media (max-width: 600px) {
+  /* line 21, ../sass/modules/_main-nav.scss */
+  .main-nav.inner {
+    background-image: none;
+  }
+}
+
+/* line 34, ../sass/modules/_main-nav.scss */
+.main-nav.fixed {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+/* line 41, ../sass/modules/_main-nav.scss */
+.main-nav.link {
+  display: inline-block;
+  padding: 2.5% 7.5%;
+  color: #717073;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  -webkit-transition: color 0.1s, background-color 0.5s, padding 0.5s, width 0.2s;
+  -moz-transition: color 0.1s, background-color 0.5s, padding 0.5s, width 0.2s;
+  -o-transition: color 0.1s, background-color 0.5s, padding 0.5s, width 0.2s;
+  transition: color 0.1s, background-color 0.5s, padding 0.5s, width 0.2s;
+}
+/* line 52, ../sass/modules/_main-nav.scss */
+.main-nav.link:hover {
+  background-color: rgba(142, 196, 73, 0.7);
+  color: #FFF;
+}
+@media (max-width: 1030px) {
+  /* line 41, ../sass/modules/_main-nav.scss */
+  .main-nav.link {
+    padding: 2.5% 4.5%;
+  }
+}
+@media (max-width: 600px) {
+  /* line 41, ../sass/modules/_main-nav.scss */
+  .main-nav.link {
+    width: 25%;
+    padding: 2.5% 0;
+  }
 }
