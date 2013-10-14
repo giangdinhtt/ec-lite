@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Bootstrap -->
   <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="css/style_new.css" rel="stylesheet" media="screen">
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
     <script src="../../assets/js/html5shiv.js"></script>
@@ -14,23 +15,29 @@
 </head>
 <body>
 <!-- Form đăng nhập -->
-  <div class="login-bar">
-    <div class="container">
-      <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="text" class="form-control" placeholder="Email address" autofocus="">
-        <input type="password" class="form-control" placeholder="Password">
-        <label class="checkbox">
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
+  <div class="fading-panel closed transitions">
+    <div class="fading-panel-inner">
+      <div class="fading-panel-content">
+        <div class="login-bar">
+          <div class="container">
+            <form class="form-signin">
+              <h2 class="form-signin-heading">Please sign in</h2>
+              <input type="text" class="form-control" placeholder="Email address" autofocus="">
+              <input type="password" class="form-control" placeholder="Password">
+              <label class="checkbox">
+                <input type="checkbox" value="remember-me"> Remember me
+              </label>
+              <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <!-- Màn hình Home -->
   <div id="home" class="container home">
     <!-- Đóng/mở màn form đăng nhập -->
-    <div class="user-login"></div>
+    <div class="user-login-open">Đăng nhập</div>
     <!-- Phần nội dung trên trang chủ -->
     <div class="home-content">
       <h1>Hello, world!</h1>
@@ -72,5 +79,6 @@
   </div>
   <script src="js/jquery-1.10.2.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script src="js/scripts.js"></script>
 </body>
 </html>

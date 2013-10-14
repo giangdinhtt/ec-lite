@@ -1,0 +1,74 @@
+/* line 1, ../sass/modules/_home-owner.scss */
+.fading-panel {
+  overflow: hidden;
+  background-color: #042e47;
+}
+/* line 6, ../sass/modules/_home-owner.scss */
+.fading-panel.closed {
+  max-height: 0;
+}
+/* line 10, ../sass/modules/_home-owner.scss */
+.fading-panel.transitions {
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+/* line 23, ../sass/modules/_home-owner.scss */
+.fading-panel-inner {
+  padding-top: 2em;
+  min-width: 200px !important;
+  color: #FFF;
+  overflow: auto;
+}
+
+/**
+ * Home screen
+ */
+body {
+  background-color: #8ec449;
+}
+.home {
+  position: relative;
+  overflow: hidden;
+}
+/* line 122, ../sass/modules/_home-owner.scss */
+.user-login-open {
+  cursor: pointer;
+  position: absolute;
+  right: 10%;
+  top: -10px;
+  width: 5em;
+  padding: 72px 10px 10px 10px;
+  border-radius: 0 0 1em 1em;
+  background-color: rgba(255, 255, 255, 0.8);
+  background-image: url("../images/home_owner_toggle_blank.svg");
+  background-position: center 0;
+  background-repeat: no-repeat;
+  color: #717073;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 100;
+  -webkit-animation-duration: 4s;
+  -moz-animation-duration: 4s;
+  -o-animation-duration: 4s;
+  animation-duration: 4s;
+  -webkit-animation-name: wobble;
+  -moz-animation-name: wobble;
+  -o-animation-name: wobble;
+  animation-name: wobble;
+  -webkit-animation-timing-function: ease;
+  -moz-animation-timing-function: ease;
+  -o-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -o-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-delay: 3s;
+  -moz-animation-delay: 3s;
+  -o-animation-delay: 3s;
+  animation-delay: 3s;
+}
