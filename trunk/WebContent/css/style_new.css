@@ -97,10 +97,10 @@ body {
   background-color: #FFF;
 }
 
-#main-nav.affix {
-    position: fixed;
-    top: 0;
-    width: 100%
+#main-nav.affix, .main-nav-fixed {
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 /* line 12, ../sass/modules/_main-nav.scss */
@@ -128,15 +128,11 @@ body {
   }
 }
 
-/* line 34, ../sass/modules/_main-nav.scss */
-.main-nav.fixed {
-  position: fixed;
-  top: 0;
-  width: 100%;
+.nav>li>a.main-nav-link {
 }
 
 /* line 41, ../sass/modules/_main-nav.scss */
-.main-nav.link {
+.main-nav-link {
   display: inline-block;
   padding: 2.5% 7.5%;
   color: #717073;
@@ -148,20 +144,39 @@ body {
   -o-transition: color 0.1s, background-color 0.5s, padding 0.5s, width 0.2s;
   transition: color 0.1s, background-color 0.5s, padding 0.5s, width 0.2s;
 }
+
+ul.nav {
+}
+ul.nav li a.main-nav-link {
+  padding: 2.5% 7.5%;
+  color: #717073;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  -webkit-transition: color 0.1s, background-color 0.5s, padding 0.5s, width 0.2s;
+  -moz-transition: color 0.1s, background-color 0.5s, padding 0.5s, width 0.2s;
+  -o-transition: color 0.1s, background-color 0.5s, padding 0.5s, width 0.2s;
+  transition: color 0.1s, background-color 0.5s, padding 0.5s, width 0.2s;
+}
+ul.nav li.active a, ul.nav li.active a:hover, .main-nav-link:hover  {
+  background-color: rgba(142, 196, 73, 0.7);
+  color: #FFF;
+}
+
 /* line 52, ../sass/modules/_main-nav.scss */
-.main-nav.link:hover {
+.nav>li>a.main-nav-link:hover, .nav>li>a.main-nav-link:hover, .main-nav-link:hover {
   background-color: rgba(142, 196, 73, 0.7);
   color: #FFF;
 }
 @media (max-width: 1030px) {
   /* line 41, ../sass/modules/_main-nav.scss */
-  .main-nav.link {
+  .main-nav-link {
     padding: 2.5% 4.5%;
   }
 }
 @media (max-width: 600px) {
   /* line 41, ../sass/modules/_main-nav.scss */
-  .main-nav.link {
+  .main-nav-link {
     width: 25%;
     padding: 2.5% 0;
   }
