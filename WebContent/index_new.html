@@ -16,6 +16,45 @@
     <script src="../../assets/js/html5shiv.js"></script>
     <script src="../../assets/js/respond.min.js"></script>
   <![endif]-->
+  <style type="text/css">
+            @import "support/bootstrap/css/bootstrap.css";
+            @import "support/bootstrap/dataTables/dataTables.bootstrap.css";
+         
+    #container {
+        padding-top: 60px !important;
+        width: 960px !important;
+    }
+    #dt_example .big {
+        font-size: 1.3em;
+        line-height: 1.45em;
+        color: #111;
+        margin-left: -10px;
+        margin-right: -10px;
+        font-weight: normal;
+    }
+    #dt_example {
+        font: 95%/1.45em "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+        color: #111;
+    }
+    div.dataTables_wrapper, table {
+        font: 13px/1.45em "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+    }
+    #dt_example h1 {
+        font-size: 16px !important;
+        color: #111;
+    }
+    #footer {
+        line-height: 1.45em;
+    }
+    div.examples {
+        padding-top: 1em !important;
+    }
+    div.examples ul {
+        padding-top: 1em !important;
+        padding-left: 1em !important;
+        color: #111;
+    }
+</style>
 </head>
 <body data-spy="scroll" data-target="#main-nav" class="ec-lite">
   <!-- Form đăng nhập -->
@@ -133,7 +172,28 @@
   <!-- Linh tinh -->
   <div id="search" class="" style="min-height: 500px; background-color: #f0f;"></div>
   <div id="intro" class="" style="min-height: 500px; background-color: #0ff;"></div>
-  <div id="org-chart" class="" style="min-height: 500px; background-color: #ff0;"></div>
+  <div id="org-chart" class="" style="background-color: #ff0;">
+	<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example" width="100%">
+    <thead>
+        <tr>
+            <th width="30%">Browser</th>
+            <th width="20%">Rendering engine</th>
+            <th width="18%">Platform(s)</th>
+            <th width="20%">Engine version</th>
+            <th width="12%">CSS grade</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Browser</th>
+            <th>Rendering engine</th>
+            <th>Platform(s)</th>
+            <th>Engine version</th>
+            <th>CSS grade</th>
+        </tr>
+    </tfoot>
+</table>
+  </div>
   <script src="js/jquery-1.10.2.min.js"></script>
   <script src="js/modernizr.js"></script>
   <script src="js/bootstrap.min.js"></script>

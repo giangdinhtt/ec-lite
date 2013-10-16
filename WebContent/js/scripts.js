@@ -40,3 +40,39 @@ $('.user-login-open').on('click touchstart', function(e){
     });
   }
 });
+
+/**
+ * Utilities
+ */
+String.prototype.trimAll = function() {
+		return this.replace(/^\s+|(\s+(?!\S))/mg, " ").trim();
+	};
+
+	String.prototype.normalize = function() {
+        return this.replace(/\s{2,}/g, ' ');
+    };
+
+	String.prototype.insert = function(position, str) {
+		return [this.slice(0, position), str, this.slice(position)].join('');
+	};
+
+	function checkNull(str) {
+	    return str ? str : '';	
+	}
+
+	function highlight(str, pattern) {
+		var indexes = [];
+		var lowercase = ('' + str).toLowerCase();
+		var lowercasePattern = pattern.toLowerCase();
+		var len = lowercasePattern.length;
+		var idx = lowercase.indexOf(lowercasePattern);
+		while (idx >= 0) {
+			indexes.push(idx);
+			idx = lowercase.indexOf(lowercasePattern, idx + lowercasePattern.length);
+		}
+ 		var result = ('' + str);
+ 	    for (i = indexes.length - 1; i >= 0; i --) {
+ 	    	result = result.insert(indexes[i] + len, '</span>').insert(indexes[i], '<span class="highlight">');
+ 	    }
+ 	    return result;
+	}

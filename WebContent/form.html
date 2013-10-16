@@ -1,0 +1,22 @@
+<!-- Bootstrap trigger to open modal -->
+<a data-toggle="modal" href="#rating-modal">Write a Review</a>
+
+<div class="hide fade modal" id="rating-modal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h2>Your Review</h2>
+  </div>
+
+  <div class="modal-body">
+    <!-- The async form to send and replace the modals content with its response -->
+    <form class="form-horizontal well" data-async data-target="#rating-modal" action="/some-endpoint" method="POST">
+      <fieldset>
+        <!-- form content -->
+      </fieldset>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+  </div>
+</div>
