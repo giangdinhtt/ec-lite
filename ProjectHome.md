@@ -1,0 +1,1 @@
+Lite version of EC project
